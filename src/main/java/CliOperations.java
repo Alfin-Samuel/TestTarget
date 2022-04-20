@@ -8,6 +8,10 @@ public class CliOperations {
     private static String APPLICATION_PATH = System.getProperty("applicationPath", "/Users/alfinsamuel/Documents/oids-master/bin/oid.sh" );
     private static String TEST_YAML_FOR_APP_PATH =  System.getProperty("testYamlForAppStart",
             System.getProperty("user.dir")+"/snmpTest.yaml");
+    private static String TEST_EMPTY_LIST_YAML_FOR_APP_PATH =  System.getProperty("testEmptyListYamlForAppStart",
+            System.getProperty("user.dir")+"/snmpTestEmptyList.yaml");
+    private static String TEST_EMPTY_YAML_FOR_APP_PATH =  System.getProperty("testEmptyYamlForAppStart",
+            System.getProperty("user.dir")+"/snmpTestEmpty.yaml");
 
     /**
      * Command to Start the application with custom external YAML file
@@ -22,6 +26,15 @@ public class CliOperations {
     public static String getResponseAfterValidationAgainstGivenYamlFile(String snmp) throws IOException, InterruptedException {
         String command = "printf " +snmp +" | " + APPLICATION_PATH + " -f "+ TEST_YAML_FOR_APP_PATH;
         System.out.println("$$$$$$$File$$$$$ - "+ TEST_YAML_FOR_APP_PATH);
+        return runCommand(command);
+    }
+
+    /**
+     * Command to Start the application with Empty external YAML file
+     */
+    public static String getResponseAfterValidationAgainstGivenEmptyYamlFile(String snmp) throws IOException, InterruptedException {
+        String command = "printf " +snmp +" | " + APPLICATION_PATH + " -f "+ TEST_EMPTY_LIST_YAML_FOR_APP_PATH;
+        System.out.println("$$$$$$$File$$$$$ - "+ TEST_EMPTY_LIST_YAML_FOR_APP_PATH);
         return runCommand(command);
     }
 
